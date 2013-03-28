@@ -15,6 +15,7 @@ def greyscale(image):
   '''
   output = None
   # Insert your code here.----------------------------------------------------
+  output=(image.sum(2)/3).astype(np.uint8)
 
   #---------------------------------------------------------------------------
   return output
