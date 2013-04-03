@@ -4,6 +4,7 @@ import numpy as np
 import random
 import cv2
 import run
+from scipy import signal as sg
 
 def convolve(image, kernel):
   '''Convolve the given image and kernel
@@ -27,7 +28,24 @@ def convolve(image, kernel):
   '''
   output = None
   # Insert your code here.----------------------------------------------------
+  kernelreversed = kernel[::-1]
+  #print "kernelreversed:\n{}".format(kernelreversed)
+ # for i in kernel:
+ #   print i+1
+  
+  output = sg.convolve(image,kernel,"valid")
+  #print output
+  #output=np.asarray(output,np.uint8)
+  for indexarray,valuearray in enumerate(output):
+    for index,value in enumerate(valuearray):
+      if(value>255):
+       valuearray[index]=255
+      if(value<0):
+       valuearray[index]=0
+    
 
+    
+  output=np.asarray(output,np.uint8)
   #---------------------------------------------------------------------------
   return output 
 
