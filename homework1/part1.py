@@ -6,6 +6,7 @@ import math
 import random
 import cv2
 import run
+from scipy import signal
 
 def make_gaussian(k, std):
   '''Create a gaussian kernel.
@@ -26,9 +27,30 @@ def make_gaussian(k, std):
  
   Once all the points are filled, the kernel should be scaled so that the sum
   of all cells is equal to one.'''
+  '''
+in c# code
+  double[,] kernel = new double[size, size];
+
+            // compute kernel
+            for ( int y = -r, i = 0; i < size; y++, i++ )
+            {
+                for ( int x = -r, j = 0; j < size; x++, j++ )
+                {
+                    kernel[i, j] = Function2D( x, y );
+                }
+            }
+
+            Math.Exp( ( x * x + y * y ) / ( -2 * sqrSigma ) ) / ( 2 * Math.PI * sqrSigma )
+'''
   kernel = None
   # Insert your code here.----------------------------------------------------
-
+  kernelsize = 2*k+1
+  sqrSigma = std*std
+  print signal.gaussian(kernelsize,std)
+  kernel = np.zeros((kernelsize,kernelsize),dtype=np.float64)
+  for x in range(-k, k+1):
+    for y in range(-k, k+1):
+      kernel[x+k,y+k]=math.exp(( x * x + y * y )/( -2 * sqrSigma ))/( 2 * math.pi * sqrSigma )
   #---------------------------------------------------------------------------
   return kernel
 
