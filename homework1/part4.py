@@ -51,6 +51,13 @@ def transform_xy_theta(dx, dy):
   theta = None
   
   # Insert your code here -------------------------------------------------------
+  theta = np.zeros((dx.shape[0],dx.shape[1]),dtype=np.float64)
+  for j in range(0,dx.shape[0]):    
+    for z in range(0,dx.shape[1]):      
+      theta[j,z]=np.arctan(dx[j,z]/dy[j,z])
+
+
+  print theta
 
   #------------------------------------------------------------------------------
   
@@ -77,6 +84,10 @@ def transform_xy_mag(dx, dy):
   mag = None
   
   # Insert your code here -------------------------------------------------------
+  mag = np.zeros((dx.shape[0],dx.shape[1]),dtype=np.float64)
+  for j in range(0,dx.shape[0]):    
+    for z in range(0,dx.shape[1]):      
+      mag[j,z]=np.sqrt(np.square(dx[j,z])+np.square(dy[j,z]))
 
   #------------------------------------------------------------------------------
   

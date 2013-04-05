@@ -6,6 +6,7 @@ import math
 import random
 import cv2
 import run
+import part1
 
 def make_sharp(k, sd):
   '''Create a sharpen kernel.
@@ -31,6 +32,11 @@ def make_sharp(k, sd):
   '''
   kernel = None
   # Insert your code here.----------------------------------------------------
+  kernelsize = 2*k+1
+  kernel = np.zeros((kernelsize,kernelsize),dtype=np.float64)
+  gaussKernel = part1.make_gaussian(k,sd)
+  kernel[k,k]=2;
+  kernel = kernel-gaussKernel
 
   #---------------------------------------------------------------------------
   return kernel

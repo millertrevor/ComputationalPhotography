@@ -42,15 +42,27 @@ in c# code
 
             Math.Exp( ( x * x + y * y ) / ( -2 * sqrSigma ) ) / ( 2 * Math.PI * sqrSigma )
 '''
+  '''
+for i in range(-rows/2+1,rows/2-1):
+    for j in range(-rows/2+1,rows/2-1):
+      kernel[i,j] = gaussian_1d[i]*gaussian_1d[j]
+
+  kernel = kernel/kernel.sum()
+'''
   kernel = None
   # Insert your code here.----------------------------------------------------
+  #gaussian_1d = signal.gaussian(k,std)
   kernelsize = 2*k+1
   sqrSigma = std*std
-  print signal.gaussian(kernelsize,std)
+  gaussian_1d = signal.gaussian(kernelsize,std)
   kernel = np.zeros((kernelsize,kernelsize),dtype=np.float64)
   for x in range(-k, k+1):
     for y in range(-k, k+1):
-      kernel[x+k,y+k]=math.exp(( x * x + y * y )/( -2 * sqrSigma ))/( 2 * math.pi * sqrSigma )
+      #kernel[x+k,y+k]=math.exp(( x * x + y * y )/( -2 * sqrSigma ))/( 2 * math.pi * sqrSigma )
+      kernel[x,y] = gaussian_1d[x]*gaussian_1d[y]
+
+
+  kernel = kernel/kernel.sum()
   #---------------------------------------------------------------------------
   return kernel
 

@@ -26,7 +26,54 @@ def filter_median(image, k):
   '''
   output = None
   # Insert your code here.----------------------------------------------------
- 
+  #print 'my code'
+  #print image.shape
+  kernelSize = 2*k+1
+  startrow = k
+  endrow = image.shape[0]-k
+  startcol = k
+  endcol = image.shape[1]-k
+  output = np.zeros((image.shape[0]-2*k,image.shape[1]-2*k),dtype=np.uint8)
+  #print 'my output'
+  #print output
+  #print 'calculation...'
+  '''
+  for x in image[startrow:endrow,startcol:endcol]:
+   for y in image[::]:
+     print x
+     print y
+     print image[x,y]
+     '''
+  '''
+  for x in range(startrow, endrow):
+    for y in range(startcol, endcol):
+      print image[x,y]
+      '''
+  '''
+  for y in range(0, image.shape[1]):
+    for x in range(0, image.shape[0]):
+    
+      print image[x,y]
+      '''
+  '''
+this loop goes in a diagnol
+i=0
+  for j in range(0,2*k+1):
+    i=j
+    print image[i:(2*k+1)+i,i:(2*k+1)+i]
+'''
+  print 'median kernel:',kernelSize
+  i=0
+  for j in range(0,image.shape[0]):
+    i=j
+    for z in range(0,image.shape[1]):
+      if(2*k+1)+i<image.shape[0]+1:
+        if(2*k+1)+z<image.shape[0]+1:
+          #print j,z
+          #print np.median( image[i:(2*k+1)+i,z:(2*k+1)+z])
+          output[j,z]=np.median(image[i:(2*k+1)+i,z:(2*k+1)+z])
+      
+  
   #---------------------------------------------------------------------------
   return output 
 
