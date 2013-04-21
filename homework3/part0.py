@@ -24,6 +24,12 @@ def reduce(image):
   '''
   out = None
   # Insert your code here ------------------------------------------------------
+  kernel = generating_kernel(.4)
+  print kernel
+  convolvedoutput = scipy.signal.convolve(image,kernel,'same')
+  #print convolvedoutput
+  out = convolvedoutput[::2,::2]
+  print convolvedoutput[::2,::2]
 
   # ----------------------------------------------------------------------------
   return out
