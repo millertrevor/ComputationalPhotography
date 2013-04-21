@@ -49,6 +49,15 @@ def expand(image):
   '''
   out = None
   # Insert your code here ------------------------------------------------------
+  kernel = generating_kernel(.4)
+  x = image.shape[0]
+  y = image.shape[1]
+  print x
+  print y
+  out = np.zeros((x*2,y*2))
+  out[::2,::2]=image
+  out = 4*scipy.signal.convolve(out,kernel,'same')
+  print out
 
   # ----------------------------------------------------------------------------
   return out
