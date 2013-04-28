@@ -25,11 +25,11 @@ def reduce(image):
   out = None
   # Insert your code here ------------------------------------------------------
   kernel = generating_kernel(.4)
-  print kernel
+  #print kernel
   convolvedoutput = scipy.signal.convolve(image,kernel,'same')
   #print convolvedoutput
   out = convolvedoutput[::2,::2]
-  print convolvedoutput[::2,::2]
+  #print convolvedoutput[::2,::2]
 
   # ----------------------------------------------------------------------------
   return out
@@ -52,12 +52,12 @@ def expand(image):
   kernel = generating_kernel(.4)
   x = image.shape[0]
   y = image.shape[1]
-  print x
-  print y
+  #print x
+  #print y
   out = np.zeros((x*2,y*2))
   out[::2,::2]=image
   out = 4*scipy.signal.convolve(out,kernel,'same')
-  print out
+  #print out
 
   # ----------------------------------------------------------------------------
   return out

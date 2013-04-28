@@ -21,7 +21,16 @@ def gauss_pyramid(image, levels):
   '''
   output = []
   # Insert your code here ------------------------------------------------------
-
+  output = [(np.zeros((5,), dtype=np.float)) for i in range(levels+1)]
+  #print len(output)
+  for i in range(len(output)):
+      if(i==0):
+        output[i]=image
+      else:
+        output[i]=part0.reduce(output[i-1])
+ # output[0]=image
+ # output[1] = part0.reduce(output[0])
+ # print output
   # ----------------------------------------------------------------------------
   return output
 
@@ -50,7 +59,42 @@ def lapl_pyramid(gauss_pyr):
   '''
   output = []
   # Insert your code here ------------------------------------------------------
-
+  print "STARTING MY CODE"
+  output = [(np.zeros((5,), dtype=np.float)) for i in range(len(gauss_pyr))]
+  #part0.expand(gauss_pyr[i+1])[:-1,:]
+  print "SIZE:"
+  print len(output)
+  for i in range(len(output)):
+    if(i+1<len(output)):
+      print i+1
+      print "Shape"
+      print gauss_pyr[i].shape
+      print gauss_pyr[i].shape[0]
+      print gauss_pyr[i].shape[1]
+      a = part0.expand(gauss_pyr[i+1])#[:-1,:]
+      b = gauss_pyr[i]
+      print a
+      print b
+      #print np.append(a,b,axis=0)
+      print a.shape
+      print b.shape
+      if b.shape <> a.shape:
+        print "Doing Work"
+        x, y = b.shape
+        a = a[:x,:y]
+      print a
+      #c = np.vstack[a,b]
+      #print c
+      output[i]=b-a
+    else:#(i==len(gauss_pyr)-1):
+      print "My Pramid"
+      print gauss_pyr[i]
+      output[i]=gauss_pyr[i]
+     #else:
+       #output[i]=part0.expand(gauss_pyr[i+1])[:-1,:]
+  print "END"
+  print output
+  print "END MY CODE"
   # ----------------------------------------------------------------------------
   return output
 
